@@ -21,6 +21,9 @@ function gameOfLife(board: number[][]): void {
                     if (board[nr][nc] === 1 || board[nr][nc] === 2) {
                         liveCount++;
                     }
+                    if(liveCount >3){
+                        break;
+                    }
                 }
             }
             if (board[i][j] === 0) {
