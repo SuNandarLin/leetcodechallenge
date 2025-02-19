@@ -3,7 +3,7 @@
  */
 function gameOfLife(board: number[][]): void {
     let tempboard = board.map(row => [...row]);
-    
+
     const n = board.length;
     const m = board[0].length;
     const eighNeighbours = [
@@ -20,7 +20,7 @@ function gameOfLife(board: number[][]): void {
                 const nc = j + dc;
 
                 if (nr >= 0 && nr < n && nc >= 0 && nc < m) {
-                    if ((board[nr][nc] === 1) && (liveCount <= 4)) {
+                    if ((board[nr][nc] === 1)) {
                         liveCount++;
                     }
                 }
