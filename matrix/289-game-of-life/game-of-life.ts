@@ -2,8 +2,6 @@
  Do not return anything, modify board in-place instead.
  */
 function gameOfLife(board: number[][]): void {
-    let tempboard = board.map(row => [...row]);
-
     const n = board.length;
     const m = board[0].length;
     const eighNeighbours = [
@@ -20,17 +18,27 @@ function gameOfLife(board: number[][]): void {
                 const nc = j + dc;
 
                 if (nr >= 0 && nr < n && nc >= 0 && nc < m) {
-                    if ((board[nr][nc] === 1)) {
+                    if (board[nr][nc] === 1 || board[nr][nc] === 2) {
                         liveCount++;
                     }
                 }
             }
-            if ((board[i][j] === 0) && (liveCount === 3)) {
-                tempboard[i][j] = 1;
-            } else if ((board[i][j] === 1) && (liveCount < 2 || liveCount > 3)) {
-                tempboard[i][j] = 0;
+            if (board[i][j] === 0) {
+                if (liveCount === 3) {
+                    board[i][j] = 3;
+                }
+            }
+            if (board[i][j] === 1) {
+                if (liveCount < 2 || liveCount > 3) {
+                    board[i][j] = 2;
+                }
             }
         }
     }
-    board.splice(0, board.length, ...tempboard.map(row => [...row]));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (board[i][j] === 2) { board[i][j] = 0; }
+            if (board[i][j] === 3) { board[i][j] = 1; }
+        }
+    }
 };
