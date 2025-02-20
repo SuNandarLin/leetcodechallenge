@@ -1,11 +1,16 @@
 function twoSum(numbers: number[], target: number): number[] {
-    const n = numbers.length;
+    let left = 0;
+    let right = numbers.length - 1;
 
-    for (let i = 0; i < n; i++) { // each number of numbers
-        for (let j = i + 1; j < n; j++) { // add up all numbers coming next indexes of array
-            if ((numbers[i] + numbers[j]) === target) {
-                return [i + 1, j + 1];
-            }
+    while (left < right) {
+        let sum = numbers[left] + numbers[right];
+
+        if (sum === target) {
+            return [left + 1, right + 1];
+        } else if (sum < target) {
+            left++;
+        } else {
+            right--;
         }
     }
 };
