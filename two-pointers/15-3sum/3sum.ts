@@ -12,7 +12,11 @@ function threeSum(nums: number[]): number[][] {
         while (left < right) {
             let sum = nums[i] + nums[left] + nums[right];
 
-            if (sum === 0) {
+            if (sum > 0) {
+                right--;
+            } else if (sum < 0) {
+                left++;
+            } else {
                 results.push([nums[i], nums[left], nums[right]]);
 
                 //If next left is same number, just skip. 
@@ -21,10 +25,6 @@ function threeSum(nums: number[]): number[][] {
                 while (left < right && nums[right] === nums[right - 1]) right--;
 
                 left++;
-                right--;
-            } else if (sum < 0) {
-                left++;
-            } else {
                 right--;
             }
         }
